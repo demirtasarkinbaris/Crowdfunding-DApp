@@ -44,7 +44,9 @@ export const CrowdFundingProvider = ({ children }) => {
 	};
 
 	const getCampaigns = async () => {
-		const provider = new ethers.providers.JsonRpcProvider();
+		const web3Modal = new Web3Modal();
+		const connection = await web3Modal.connect();
+		const provider = new ethers.providers.Web3Provider(connection);
 		const contract = fetchContract(provider);
 
 		const campaigns = await contract.getCampaigns();
@@ -64,7 +66,9 @@ export const CrowdFundingProvider = ({ children }) => {
 	};
 
 	const getUserCampaigns = async () => {
-		const provider = new ethers.providers.JsonRpcProvider();
+		const web3Modal = new Web3Modal();
+		const connection = await web3Modal.connect();
+		const provider = new ethers.providers.Web3Provider(connection);
 		const contract = fetchContract(provider);
 
 		const allCampaigns = await contract.getCampaigns();
@@ -110,7 +114,9 @@ export const CrowdFundingProvider = ({ children }) => {
 	};
 
 	const getDonations = async (pId) => {
-		const provider = new ethers.providers.JsonRpcProvider();
+		const web3Modal = new Web3Modal();
+		const connection = await web3Modal.connect();
+		const provider = new ethers.providers.Web3Provider(connection);
 		const contract = fetchContract(provider);
 
 		const donations = await contract.getDonators(pId);
